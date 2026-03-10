@@ -45,6 +45,7 @@ function SideBar() {
              hover:bg-slate-100 rounded-lg cursor-pointer
              ${path=='/dashboard'&&'bg-slate-200'}
              `}>
+                {/*here layout is icon*/}
                 <Layout />
                 <h2>Workspace</h2>
             </div>
@@ -60,13 +61,15 @@ function SideBar() {
             </div>
             </Link>
         </div>
-      {!GetUserInfo?.upgrade && <div className='absolute bottom-24 w-[80%]'>
-            <Progress value={(fileList?.length/5)*100} />
-            <p className='text-sm mt-1'>{fileList?.length} out of 5 Pdf Uploaded</p>
+      {!GetUserInfo?.upgrade && 
+        <div className='absolute bottom-24 w-[80%]'>
+          <Progress value={(fileList?.length/5)*100} />
+          <p className='text-sm mt-1'>{fileList?.length} out of 5 Pdf Uploaded</p>
 
-            <p className='text-sm text-gray-400 mt-2'>Upgrade to Upload more PDF</p>
+          <p className='text-sm text-gray-400 mt-2'>Upgrade to Upload more PDF</p>
 
-        </div>}
+        </div>
+      }
     </div>
   )
 }
