@@ -1,25 +1,30 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+
+import axios from 'axios';
 import {
-    Dialog,
-    DialogClose,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-  } from "@/components/ui/dialog"
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { useAction, useMutation } from 'convex/react'
-import { api } from '@/convex/_generated/api'
-import { Loader2Icon } from 'lucide-react'
-import uuid4 from 'uuid4'
-import { useUser } from '@clerk/nextjs'
-import axios from 'axios'
-import { toast } from 'sonner'
-  
+  useAction,
+  useMutation,
+} from 'convex/react';
+import { Loader2Icon } from 'lucide-react';
+import { toast } from 'sonner';
+import uuid4 from 'uuid4';
+
+import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { api } from '@/convex/_generated/api';
+import { useUser } from '@clerk/nextjs';
+
 function UploadPdfDialog({children,isMaxFile}) {
 
     const generateUploadUrl=useMutation(api.fileStorage.generateUploadUrl);
@@ -32,7 +37,7 @@ function UploadPdfDialog({children,isMaxFile}) {
     const [fileName,setFileName]=useState();
     const [open,setOpen]=useState(false);
     const OnFileSelect=(event)=>{
-        setFile(event.target.files[0]);
+      setFile(event.target.files[0]);
     }
 
     const OnUpload=async()=>{
@@ -85,47 +90,46 @@ function UploadPdfDialog({children,isMaxFile}) {
 
   return (
     <Dialog open={open}>
-  <DialogTrigger asChild>
-      <Button onClick={()=>setOpen(true)} disabled={isMaxFile} className="w-full">+ Upload PDF File</Button>
+      <DialogTrigger asChild>
+        <Button onClick={()=>setOpen(true)} disabled={isMaxFile} className="w-full">+ Upload PDF File</Button>
 
-  </DialogTrigger>
-  <DialogContent>
-    <DialogHeader>
-      <DialogTitle>Upload Pdf File</DialogTitle>
-      <DialogDescription asChild>
-            <div className=''>
-            <h2 className='mt-5'>Select a file to Upload</h2>
-                <div className='  gap-2 p-3 rounded-md border'>
-                   
-                    <input type='file' accept='application/pdf'
+      </DialogTrigger>
+
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Upload Pdf File</DialogTitle>
+          <DialogDescription asChild>
+                <div className=''>
+                  <h2 className='mt-5'>Select a file to Upload</h2>
+                  <div className='  gap-2 p-3 rounded-md border'>
                     
+                    <input type='file' accept='application/pdf'
+                      
                     onChange={(event)=>OnFileSelect(event)}/>
+                  </div>
+                  <div className='mt-2'>
+                      <label>File Name *</label>
+                      <Input placeholder="File Name" onChange={(e)=>setFileName(e.target.value)} />
+                  </div>
                 </div>
-                <div className='mt-2'>
-                    <label>File Name *</label>
-                    <Input placeholder="File Name" onChange={(e)=>setFileName(e.target.value)} />
-                </div>
+          </DialogDescription>
+        </DialogHeader>
 
-               
-            </div>
-      </DialogDescription>
-    </DialogHeader>
-    <DialogFooter className="sm:justify-end">
-          <DialogClose asChild>
-            <Button type="button"  variant="secondary" onClick={()=>setOpen(false)}>
-              Close
-            </Button>
-          </DialogClose>
-          <Button onClick={OnUpload} disabled={loading}>
-            {loading?
-                <Loader2Icon className='animate-spin'/>:'Upload'
-            }
+        <DialogFooter className="sm:justify-end">
+            <DialogClose asChild>
+              <Button type="button"  variant="secondary" onClick={()=>setOpen(false)}>
+                Close
+              </Button>
+            </DialogClose>
+            <Button onClick={OnUpload} disabled={loading}>
+              {loading?
+                  <Loader2Icon className='animate-spin'/>:'Upload'
+              }
             </Button>
         </DialogFooter>
-  </DialogContent>
-</Dialog>
-
-  )
+      </DialogContent>
+    </Dialog>
+  ) 
 }
 
 export default UploadPdfDialog
