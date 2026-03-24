@@ -31,7 +31,7 @@ function TextEditior({fileId}) {
             Highlight.configure({ multicolor: true }),
             TextAlign.configure({
                 types: ['heading', 'paragraph'],
-            }),
+              }),
             
         ],
        
