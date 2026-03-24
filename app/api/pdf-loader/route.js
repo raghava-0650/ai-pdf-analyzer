@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-import { WebPDFLoader } from '@langchain/community/document_loaders/fs/pdf';
+import { PDFLoader } from '@langchain/community/document_loaders/fs/pdf';
 import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters';
 
 // const pdfUrl="https://grand-lion-750.convex.cloud/api/storage/d25f3b88-7570-48f8-9e8b-944f296d56ad"
@@ -13,7 +13,7 @@ export async function GET(req) {
     //1. Load the PDF File
     const response=await fetch(pdfUrl);
     const data=await response.blob();
-    const loader=new WebPDFLoader(data);
+    const loader=new PDFLoader(data);
     const docs=await loader.load();
 
     let pdfTextContent='';
