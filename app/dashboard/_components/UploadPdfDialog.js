@@ -77,7 +77,7 @@ function UploadPdfDialog({children,isMaxFile}) {
         //API Call to Fetch PDF Proccess Data
         const ApiResp=await axios.get('/api/pdf-loader?pdfUrl='+fileUrl);
         console.log(ApiResp.data.result);
-       await embeddDocument({
+        await embeddDocument({
           splitText:ApiResp.data.result,
           fileId:fileId
         });
