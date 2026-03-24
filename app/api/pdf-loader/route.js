@@ -1,7 +1,7 @@
-import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
 import { NextResponse } from 'next/server';
 
-import { WebPDFLoader } from '@langchain/community/document_loaders/web/pdf';
+import { WebPDFLoader } from '@langchain/community/document_loaders/fs/pdf';
+import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters';
 
 // const pdfUrl="https://grand-lion-750.convex.cloud/api/storage/d25f3b88-7570-48f8-9e8b-944f296d56ad"
 export async function GET(req) {
