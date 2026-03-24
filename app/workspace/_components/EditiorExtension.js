@@ -31,7 +31,7 @@ import { useParams } from 'next/navigation';
 import { toast } from 'sonner';
 
 import { FileSaveContext } from '@/app/_context/FileSaveContext';
-import { chatSession } from '@/configs/AIModel';
+import { chatSession } from '@/app/configs/AIModel';
 import { api } from '@/convex/_generated/api';
 import { useUser } from '@clerk/nextjs';
 
